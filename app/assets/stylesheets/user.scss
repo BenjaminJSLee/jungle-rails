@@ -1,0 +1,23 @@
+div.form-card {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding: 1em;
+  border: 1px solid black;
+  border-radius: 0.5em;
+  box-shadow: 2px 2px 16px 2px grey;
+  margin-left: auto;
+  margin-right: auto;
+  :first-child {
+    text-align: center;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    > * {
+      font-weight: normal;
+      margin-bottom: 1em;
+    }
+  }
+}
