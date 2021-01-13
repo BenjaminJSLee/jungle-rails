@@ -1,0 +1,13 @@
+Thank you for your order! 
+Here's the receipt for order #<%= @order.id %>
+==============================================
+<% @order.line_items.each do |item| %>
+----------------------------------------------
+  Product Name: <%= item.product.name %>
+  Quantity: <%= item.quantity.to_i %>
+  Item Price: <%= humanized_money_with_symbol item.item_price %>
+  Total Price: <%= humanized_money_with_symbol item.total_price %>
+----------------------------------------------
+<% end %>
+==============================================
+TOTAL: <%= humanized_money_with_symbol @order.total_cents / 100.0 %>
