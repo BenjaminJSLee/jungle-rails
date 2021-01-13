@@ -2,6 +2,21 @@
 
 A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
 
+# Preview
+![Admin Products Page](https://github.com/BenjaminJSLee/jungle-rails/blob/master/docs/admin_products_show.png?raw=true)
+___
+![User Cart](https://github.com/BenjaminJSLee/jungle-rails/blob/master/docs/cart.png?raw=true)
+___
+![Order Show Page](https://github.com/BenjaminJSLee/jungle-rails/blob/master/docs/order_show.png?raw=true)
+___
+![Product Details Page](https://github.com/BenjaminJSLee/jungle-rails/blob/master/docs/product_details.png?raw=true)
+___
+![Products Show Page](https://github.com/BenjaminJSLee/jungle-rails/blob/master/docs/products_show.png?raw=true)
+___
+
+# Testing
+
+In case you want to test/deploy the app yourself:
 
 ## Setup
 
