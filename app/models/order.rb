@@ -6,8 +6,8 @@ class Order < ActiveRecord::Base
   monetize :total_cents, numericality: true
 
   validates :stripe_charge_id, presence: true
-
-  before_create :validate_order
+  
+  validate :validate_order
   after_create :decrement_products
 
   private
@@ -15,6 +15,7 @@ class Order < ActiveRecord::Base
   def validate_order
     self.line_items.each do |item|
       if item.product.quantity - item.quantity < 0
+        self.errors.add('quantity', 'can not be negative')
         return false
       end
     end
