@@ -20,7 +20,7 @@ class Admin::SalesController < ApplicationController
 
   private
 
-    def product_params
+    def sale_params
       params.require(:sale).permit(
         :name,
         :starts_on,
