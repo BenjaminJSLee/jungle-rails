@@ -40,11 +40,22 @@
       <h1>Reviews</h1>
     </header>
     <% if current_user != nil %>
-      <div class="row">
+      <div class="row review-form">
         <%= form_for [@product, @product.reviews.new] do |f| %>
-          <%= f.text_area :description %>
-          <%= f.select :rating, [1,2,3,4,5], :selected => 3 %>
-          <%= f.submit "Submit", :class => 'btn btn-primary' %>
+          <%= f.label :description %>
+          <%= f.text_area :description,
+            :class => 'review-form--description'
+          %>
+          <div class="review-footer">
+            <div>
+              <%= f.label :rating %>
+              <%= f.select :rating, [1,2,3,4,5], 
+                :selected => 3,
+                :class => 'review-form--selection'
+              %>
+            </div>
+            <%= f.submit "Submit", :class => 'btn btn-primary' %>
+          </div>
         <% end %>
       </div>
     <% end %>

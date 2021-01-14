@@ -86,17 +86,34 @@ main section.products-show {
   }
 }
 
+.review-form {
+  height: 15em;
+  margin: 1em;
+  padding: 0.5em;
+  form {
+    height: 100%;
+  }
+  #review_rating {
+    width: 3em;
+  }
+  .review-form--description {
+    width: 100%;
+    height: 70%;
+    resize: none;
+  }
+}
+
 .review-card {
   background-color: #E1E1E1;
   border-radius: 0.5em;
   margin: 1em;
   padding: 1em;
-  .review-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
 }
 
+.review-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 
