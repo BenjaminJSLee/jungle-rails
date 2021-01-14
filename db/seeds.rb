@@ -21,6 +21,31 @@ end
 
 # Let's do this ...
 
+## USERS
+
+puts "Creating Users ..."
+
+user1 = User.create!({
+  first_name: 'Dave',
+  last_name: 'Evad',
+  email: 'dman@test.com',
+  password: 'password'
+})
+
+user2 = User.create!({
+  first_name: 'Jane',
+  last_name: 'Doe',
+  email: 'jgirl@test.com',
+  password: 'password'
+})
+
+user3 = User.create!({
+  first_name: 'John',
+  last_name: 'Deer',
+  email: 'jman@test.com',
+  password: 'password'
+})
+
 ## CATEGORIES
 
 puts "Finding or Creating Categories ..."
@@ -35,7 +60,7 @@ puts "Re-creating Products ..."
 
 Product.destroy_all
 
-cat1.products.create!({
+prod1 = cat1.products.create!({
   name:  'Men\'s Classy shirt',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel1.jpg'),
@@ -43,7 +68,7 @@ cat1.products.create!({
   price: 64.99
 })
 
-cat1.products.create!({
+prod2 = cat1.products.create!({
   name:  'Women\'s Zebra pants',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel2.jpg'),
@@ -51,7 +76,7 @@ cat1.products.create!({
   price: 124.99
 })
 
-cat1.products.create!({
+prod3 = cat1.products.create!({
   name:  'Hipster Hat',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel3.jpg'),
@@ -132,5 +157,39 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+prod1.reviews.create!({
+  user_id: user1.id,
+  description: "Pretty good",
+  rating: 3
+})
+
+prod1.reviews.create!({
+  user_id: user2.id,
+  description: "I liked it",
+  rating: 4
+})
+
+prod1.reviews.create!({
+  user_id: user3.id,
+  description: "Ehhh...",
+  rating: 2
+})
+
+prod2.reviews.create!({
+  user_id: user3.id,
+  rating: 1
+})
+
+prod3.reviews.create!({
+  user_id: user1.id,
+  description: "Fantastic, I loved it.",
+  rating: 5
+})
+
+prod3.reviews.create!({
+  user_id: user2.id,
+  description: "Chef's kiss from me",
+  rating: 5
+})
 
 puts "DONE!"

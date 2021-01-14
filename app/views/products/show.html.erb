@@ -26,6 +26,30 @@
       </div>
     </div>
 
+    <div class="row">
+      <%= form_for [@product, @product.reviews.new] do |f| %>
+        <%= f.text_area :description %>
+        <%= f.select :rating, [1,2,3,4,5], :selected => 3 %>
+        <%= f.submit "Submit", :class => 'btn btn-primary' %>
+      <% end %>
+    </div>
+
+    <div class="row">
+      <% @product.reviews.each do |review| %>
+        <%
+        if !review.persisted? 
+          break
+        end
+        %>
+        <dl class="row jumbotron">
+          <dt class="h4"><%= review.user.first_name + " " + review.user.last_name %></dt>
+          <hr>
+          <dd class="h5">Rating: <%= review.rating %>/5</dd>
+          <dd><%= review.description %></dd>
+        </dl>
+      <% end %>
+    </div>
+
   </article>
 
 </section>
