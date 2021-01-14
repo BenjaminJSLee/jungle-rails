@@ -22,30 +22,52 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= humanized_money_with_symbol @product.price %></dd>
+          <dt>Rating</dt>
+          <dd>
+          <%= 
+            rating = @product.reviews.average(:rating) || "Not yet rated"
+            if rating.is_a? Numeric
+              (rating * 100).floor / 100.0 
+            else
+              rating
+            end
+          %>
+          </dd>
         </dl>
       </div>
     </div>
-
+    <header class="page-header">
+      <h1>Reviews</h1>
+    </header>
+    <% if current_user != nil %>
+      <div class="row">
+        <%= form_for [@product, @product.reviews.new] do |f| %>
+          <%= f.text_area :description %>
+          <%= f.select :rating, [1,2,3,4,5], :selected => 3 %>
+          <%= f.submit "Submit", :class => 'btn btn-primary' %>
+        <% end %>
+      </div>
+    <% end %>
+    <hr>
     <div class="row">
-      <%= form_for [@product, @product.reviews.new] do |f| %>
-        <%= f.text_area :description %>
-        <%= f.select :rating, [1,2,3,4,5], :selected => 3 %>
-        <%= f.submit "Submit", :class => 'btn btn-primary' %>
-      <% end %>
-    </div>
-
-    <div class="row">
-      <% @product.reviews.each do |review| %>
-        <%
+      <% 
+      @product.reviews.order(created_at: :desc).each do |review|
         if !review.persisted? 
           break
         end
-        %>
-        <dl class="row jumbotron">
+      %>
+        <dl class="review-card row">
           <dt class="h4"><%= review.user.first_name + " " + review.user.last_name %></dt>
           <hr>
           <dd class="h5">Rating: <%= review.rating %>/5</dd>
           <dd><%= review.description %></dd>
+          <hr>
+          <footer class="review-footer">
+            <span><%= review.created_at.strftime("%b %e %Y") %></span>
+            <% if current_user == review.user %>
+              <%= link_to fa_icon('trash'), [@product, review], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+            <% end %>
+          </footer>
         </dl>
       <% end %>
     </div>

@@ -86,4 +86,17 @@ main section.products-show {
   }
 }
 
+.review-card {
+  background-color: #E1E1E1;
+  border-radius: 0.5em;
+  margin: 1em;
+  padding: 1em;
+  .review-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
 
